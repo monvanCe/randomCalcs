@@ -75,7 +75,7 @@ const App = () => {
   const dlt = () => {
     setvalue(value.substring(0, value.length - 1));
   };
-
+  //
   return (
     <View style={[styles.container, {flex: 1, backgroundColor: 'white'}]}>
       {/* soru kısmının görüntülendiği view */}

@@ -20,6 +20,16 @@ const App = () => {
 
   const {height, width} = Dimensions.get('window');
 
+  const [isPressed, setIsPressed] = useState(null);
+
+  const handlePressIn = value => {
+    setIsPressed(value);
+
+    setTimeout(() => {
+      setIsPressed(55);
+    }, 100);
+  };
+
   const click = key => {
     value.length < 2 && setvalue(value + key);
 
@@ -146,8 +156,9 @@ const App = () => {
               <TouchableOpacity
                 onPress={() => {
                   item.onp == 'click' ? click(item.value) : dlt();
+                  handlePressIn(item.value);
                 }}
-                activeOpacity={0.7}
+                activeOpacity={1}
                 style={{
                   height: height / 12,
                   width: width / 5.2,
@@ -156,6 +167,8 @@ const App = () => {
                   marginHorizontal: '5%',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  marginBottom: '5%',
+                  transform: [{translateY: isPressed == item.value ? 4 : 0}],
                 }}>
                 <Text style={{fontSize: height / 20, color: '#e7696b'}}>
                   {item.value}
@@ -174,7 +187,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: '6.5%',
-    paddingBottom: '5%',
   },
   question: {
     borderRadius: 40,
